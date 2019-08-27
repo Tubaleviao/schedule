@@ -2,3 +2,13 @@ body{
   color: lime;
   background-color: black;
 }
+
+.day{
+  display: inline-block;
+  background-color: #003300;
+  white-space:normal;
+  width: 5%;
+  height: 5%;
+}
+
+

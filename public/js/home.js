@@ -24,6 +24,46 @@ function buildTable(mes, ano){
     document.write("</div>");
   }
 */
+Date.prototype.getWeek = function() {
+    var onejan = new Date(this.getFullYear(),0,1);
+    var millisecsInDay = 86400000;
+    return Math.ceil((((this - onejan) /millisecsInDay) + onejan.getDay()+1)/7);
+};
+
+
+let getFirstSunday = () =>{
+  
+  let d = new Date();
+  d.setDate(d.getDate() - 7)
+  d.setDate(d.getDate() - d.getDay())
+  return d
+}
+
+let buildTable = () => {
+  
+  // get last 1 and next 4 weeks, separate days by blocks, months by color (gray) and weeks by line
+  let firstDay = getFirstSunday();
+  
+  let i=5;
+  while(i>0){ // iterate for each week
+    let weekNumber = firstDay.getWeek()
+    let week = $('<div>').addClass('week').attr('id', 'week'+weekNumber) // +firstDay.getWeekNumber()
+    
+    $('.table').append(week)
+    for(let i=0;i<7;i++){ // iterate for 7 days
+      let day = $('<div>').addClass('day').attr('id', 'day'+firstDay.getDate()).text(firstDay.getDate())
+      $('#week'+weekNumber).append(day)
+      console.log(firstDay.getDate())
+      firstDay.setDate(firstDay.getDate()+1)
+       // DAY 24 IS DISAPEARING!!!!
+
+}
+    i--;
+  }
+}
+
 $(function() {
+  
   //alert("ae");
+  buildTable();
 })
