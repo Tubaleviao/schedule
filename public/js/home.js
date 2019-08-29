@@ -51,11 +51,16 @@ let buildTable = () => {
     
     $('.table').append(week)
     for(let i=0;i<7;i++){ // iterate for 7 days
-      let day = $('<div>').addClass('day').attr('id', 'day'+firstDay.getDate()).text(firstDay.getDate())
+      let day = $('<div>').addClass('day')
+      day.attr('id', 'day'+firstDay.getDate())
+     day.text(firstDay.getDate())
+      if((firstDay.getMonth()+1)%2==0){
+        day.addClass('evenMonth')
+      }
       $('#week'+weekNumber).append(day)
       console.log(firstDay.getDate())
       firstDay.setDate(firstDay.getDate()+1)
-       // DAY 24 IS DISAPEARING!!!!
+       
 
 }
     i--;
